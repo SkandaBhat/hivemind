@@ -66,6 +66,8 @@ def build_p2p_daemon():
 
     with tempfile.TemporaryDirectory() as tempdir:
         dest = os.path.join(tempdir, "libp2p-daemon.tar.gz")
+        print(dest)
+        print(P2PD_SOURCE_URL)
         urllib.request.urlretrieve(P2PD_SOURCE_URL, dest)
 
         with tarfile.open(dest, "r:gz") as tar:
@@ -106,10 +108,7 @@ class BuildPy(build_py):
         self.buildgo = False
 
     def run(self):
-        if self.buildgo:
-            build_p2p_daemon()
-        else:
-            download_p2p_daemon()
+        build_p2p_daemon()
 
         super().run()
 
